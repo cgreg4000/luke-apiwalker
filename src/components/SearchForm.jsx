@@ -23,15 +23,15 @@ const SearchForm = () => {
     return (
         <>
             
-            <form onSubmit={submitHandler}>
-                <label>Search for:</label>
-                <select onChange={(e) => {setCategorySelector(e.target.value)}}>
+            <form className="form-group" onSubmit={submitHandler}>
+                <label className="mb-2" >Search for:</label>
+                <select className="form-control mb-3" onChange={(e) => {setCategorySelector(e.target.value)}}>
                     <option value="people">people</option>
                     <option value="planets">planets</option>
                 </select>
-                <label>ID:</label>
-                <input type="number" onChange={(e) => {setIdInput(e.target.value)}}></input>
-                <input type="submit" value="Search"></input>
+                <label className="mb-2">ID:</label>
+                <input className="form-control mb-4" type="number" onChange={(e) => {setIdInput(e.target.value)}}></input>
+                <input className="btn btn-dark mb-5" type="submit" value="Search"></input>
             </form>
             
         </>
