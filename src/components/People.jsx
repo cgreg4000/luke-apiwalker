@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 
@@ -49,7 +49,7 @@ const People = () => {
                 <p>Height: {person.height} cm</p>
                 <p>Mass: {person.mass} kg</p>
                 <p>Birth Year: {person.birth_year}</p>
-                <p>Home World: {planet.name}</p>
+                <p>Homeworld: <Link to={`/planets/${id}`}>{planet.name}</Link></p>
             </div>
     )
 }
