@@ -7,8 +7,9 @@ const People = () => {
 
     const {id} = useParams();
     let [person, setPerson] = useState([]);
-    let [isError, setIsError] = useState(false);
+    let [personError, setPersonError] = useState(false);
     let [planet, setPlanet] = useState("");
+    let [planetError, setPlanetError] = useState(false);
 
     useEffect(()=>{
         axios.get(`https://swapi.dev/api/people/${id}`)
@@ -17,10 +18,10 @@ const People = () => {
                 console.log(peopleResponse.data);
             })
             .catch(err => {
-                setIsError(true);
+                setPersonError(true);
                 console.log(err);
             })
-            setIsError(false);
+            setPersonError(false);
             setPerson("");
     }, [id])
     
@@ -31,15 +32,15 @@ const People = () => {
                 console.log(planetResponse.data)
             })
             .catch(err => {
-                setIsError(true);
+                setPlanetError(true);
                 console.log(err);
             })
-            setIsError(false);
+            setPlanetError(false);
             setPlanet("");
     }, [id])
 
     return(
-            isError == true ?
+            personError == true ?
             <div>
                 <h1 className="mb-3">These aren't the droids you're looking for.</h1>
                 <img src="https://starwarsblog.starwars.com/wp-content/uploads/sites/6/2017/05/ANH-Ben-identification.jpg" alt="" />
@@ -49,7 +50,10 @@ const People = () => {
                 <p>Height: {person.height} cm</p>
                 <p>Mass: {person.mass} kg</p>
                 <p>Birth Year: {person.birth_year}</p>
-                <p>Homeworld: <Link to={`/planets/${id}`}>{planet.name}</Link></p>
+                {
+                    planetError == true ? <p>Homeworld: {person.homeworld}</p> :
+                    <p>Homeworld: <Link to={`/planets/${id}`}>{planet.name}</Link></p>
+                }
             </div>
     )
 }
