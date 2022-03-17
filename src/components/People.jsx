@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const People = () => {
 
     const {id} = useParams();
-    let [person, setPerson] = useState([]);
+    let [person, setPerson] = useState({});
     let [isError, setIsError] = useState(false);
 
     useEffect(()=>{
@@ -23,10 +23,10 @@ const People = () => {
     }, [id])
     
     return(
-            isError == true ?
+            isError === true ?
             <div>
                 <h1 className="mb-3">These aren't the droids you're looking for.</h1>
-                <img src="https://starwarsblog.starwars.com/wp-content/uploads/sites/6/2017/05/ANH-Ben-identification.jpg" alt="" />
+                <img src="https://starwarsblog.starwars.com/wp-content/uploads/sites/6/2017/05/ANH-Ben-identification.jpg" alt="Obi-Wan Kenobi" />
             </div>: 
             <div>
                 <h1 className="mb-3">{person.name}</h1>

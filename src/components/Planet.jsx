@@ -4,7 +4,7 @@ import axios from "axios";
 
 const Planet = () => {
     const {id} = useParams();
-    let [starWarsResponse, setStarWarsResponse] = useState([]);
+    let [starWarsResponse, setStarWarsResponse] = useState({});
     let [isError, setIsError] = useState(false);
 
     useEffect(()=>{
@@ -22,7 +22,7 @@ const Planet = () => {
     }, [id])
 
     return(
-            isError == true ?
+            isError === true ?
             <div>
                 <h1 className="mb-3">These aren't the droids you're looking for.</h1>
                 <img src="https://starwarsblog.starwars.com/wp-content/uploads/sites/6/2017/05/ANH-Ben-identification.jpg" alt="" />
